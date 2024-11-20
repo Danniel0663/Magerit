@@ -1,0 +1,226 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.vulnerabilidad-valor {
+    width: 100px; /* Ajusta este valor según lo que necesites */
+    text-align: right; /* Alinea los números a la derecha */
+}
+
+.impacto-valor {
+    width: 80px; /* Aplica el mismo ajuste a otras columnas si es necesario */
+    text-align: right;
+}
+
+.riesgo-intrinseco {
+    width: 100px; /* Aplica el mismo ajuste a otras columnas si es necesario */
+    text-align: right;
+}
+
+.vulnerabilidad-select{
+    width: 85px; /* Ajusta este valor según lo que necesites */
+    text-align: right; /* Alinea los números a la derecha */
+}
+
+.impacto-select{
+    width: 60px; /* Ajusta este valor según lo que necesites */
+    text-align: right; /* Alinea los números a la derecha */
+}
+
+
+.btn-specific {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #5A6B55;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-specific:hover {
+    background-color: #4A5A46;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+header {
+    background-color: #7B8F74; /* Cambiado de negro a verde */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #6A7F66; /* Un tono más oscuro para combinar */
+    padding: 10px;
+    width: 100%;
+}
+
+nav a {
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: #8F9C86; /* Tono más claro */
+    color: #f4f4f4;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #7B8F74; /* Cambiado de negro a verde */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    margin-top: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.form-container {
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Tabla de Amenazas */
+.table-x-cell {
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+.table-x-cell:hover {
+    background-color: #f0f0f0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #6A7F66; /* Tono más oscuro */
+    padding: 5px 10%;
+    height: auto;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-weight: 700;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.navbar-brand:hover {
+    color: #d0d3d4;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    padding: 0 15px;
+    transition: transform 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #d0d3d4;
+    transform: scale(1.1);
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    color: #fff;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.description {
+    padding-top: 20px;
+}
+/* Estilo para las tablas */
+table {
+    background-color: #D4E4D1; /* Fondo de las tablas */
+    border-color: #B0C7AC; /* Borde de las tablas */
+  }
+  
+  /* Estilo para los encabezados de las tablas */
+  thead th {
+    background-color: #abcfa5; /* Fondo de los encabezados */
+    color: #ffffff; /* Color del texto */
+    text-align: center; /* Centrado del texto */
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  
+  /* Estilo para las filas */
+  table tbody tr:nth-child(odd) {
+    background-color: #F2F7F1; /* Color para filas impares */
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #E8F0E7; /* Color para filas pares */
+  }
+  
+  /* Bordes de las tablas */
+  table, th, td {
+    border: 1px solid #B0C7AC;
+    border-collapse: collapse;
+  }
+  
+  
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.slogan {
+    font-style: italic;
+    color: #6A7F66; /* Combina con el nav */
+    text-align: center;
+    margin-top: 30px;
+    animation: pulse 2s infinite;
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 5px;
+    }
+    .navbar-brand {
+        font-size: 20px;
+    }
+}
+

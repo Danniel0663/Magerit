@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Activos - Magerit</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>- Gestión de Activos -</h1>
+</header>
+
+<nav>
+  <a href="index.html" class="btn-specific">Inicio</a>
+  <a href="activos.html" class="btn-specific">Gestionar Activos</a>
+</nav>
+<br>
+<main>
+  <div class="form-container">
+    <h2>Agregar Activo</h2>
+    <select class="form-control mb-3" id="tipoActivo" onchange="generarCodigoYDimensiones()">
+      <option value="Datos / Información">Datos / Información</option>
+      <option value="Claves Criptográficas">Claves Criptográficas</option>
+      <option value="Servicios">Servicios</option>
+      <option value="Software">Software</option>
+      <option value="Hardware">Hardware</option>
+      <option value="Redes de Comunicaciones">Redes de Comunicaciones</option>
+      <option value="Soportes de Información">Soportes de Información</option>
+      <option value="Equipamiento Auxiliar">Equipamiento Auxiliar</option>
+      <option value="Instalaciones">Instalaciones</option>
+      <option value="Personal">Personal</option>
+    </select>
+    <input type="text" class="form-control mb-3" id="nombreActivo" placeholder="Nombre del Activo">
+    <input type="number" class="form-control mb-3" id="valorActivo" placeholder="Valor del Activo" oninput="calcularValoracion()">
+
+    <button class="btn btn-primary" onclick="agregarActivo()">Agregar Activo</button>
+  </div>
+  <br>
+  <div class="container mt-4">
+    <h2 class="text-center">Lista de Activos</h2>
+    <table class="table table-striped table-bordered mt-3" id="assetsTable">
+      <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Código</th>
+        <th>Activo</th>
+        <th>Valor</th>
+        <th>Valoración</th>
+        <th>A</th>
+        <th>C</th>
+        <th>I</th>
+        <th>D</th>
+        <th>T</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button class="btn btn-danger mt-3" onclick="limpiarTabla()">Limpiar Tabla</button>
+  </div>
+  <br>
+  <div class="container mt-5">
+    <h2 class="text-center">Tabla de Amenazas</h2>
+    <table class="table table-bordered" id="threatsTable">
+      <thead>
+      <tr>
+        <th>Grupo</th>
+        <th>Código</th>
+        <th>Amenaza</th>
+        <th colspan="5">Dimensión Afectada</th>
+        <th colspan="5">Activos Afectados</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>A</th>
+        <th>C</th>
+        <th>I</th>
+        <th>D</th>
+        <th>T</th>
+        <th>S</th>
+        <th>H</th>
+        <th>I</th>
+        <th>R</th>
+        <th>P</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Desastres naturales</td>
+        <td>DN01</td>
+        <td>Fuego</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Desastres naturales</td>
+        <td>DN02</td>
+        <td>Daños por agua</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Desastres naturales</td>
+        <td>DN03</td>
+        <td>Terremotos</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Desastres naturales</td>
+        <td>DN04</td>
+        <td>Otros Desastres</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+
+      <tr>
+        <td>Origen Industrial</td>
+        <td>OI01</td>
+        <td>Corte de suministro eléctrico</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Origen Industrial</td>
+        <td>OI02</td>
+        <td>Malas condiciones</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Origen Industrial</td>
+        <td>OI03</td>
+        <td>Daños por agua</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Origen Industrial</td>
+        <td>OI04</td>
+        <td>Fallo de servicios de comunicaciones</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Origen Industrial</td>
+        <td>OI05</td>
+        <td>Degradación de soportes</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Errores y fallos no intencionados</td>
+        <td>E01</td>
+        <td>Errores de configuración</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Errores y fallos no intencionados</td>
+        <td>E02</td>
+        <td>Errores de usuarios</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Errores y fallos no intencionados</td>
+        <td>E03</td>
+        <td>Errores del gerente</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Errores y fallos no intencionados</td>
+        <td>E04</td>
+        <td>EErrores de mantenimiento</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Errores y fallos no intencionados</td>
+        <td>E05</td>
+        <td>Fuga de información</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Errores y fallos no intencionados</td>
+        <td>E06</td>
+        <td>Deficiencias de la empresa</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Errores y fallos no intencionados</td>
+        <td>E07</td>
+        <td>Vulnerabilidades del software</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Errores y fallos no intencionados</td>
+        <td>E08</td>
+        <td>Daños en los equipos</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Ataques intencionados</td>
+        <td>AI01</td>
+        <td>Robo de equipos</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Ataques intencionados</td>
+        <td>AI02</td>
+        <td>Daños en los equipos</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Ataques intencionados</td>
+        <td>AI03</td>
+        <td>Divulgación de información</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Ataques intencionados</td>
+        <td>AI04</td>
+        <td>Suplantación de identidad</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Destrucción de información</td>
+        <td>AI05</td>
+        <td>Destrucción de información</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Ataques intencionados</td>
+        <td>AI06</td>
+        <td>Extorsión</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Ataques intencionados</td>
+        <td>AI07</td>
+        <td>Uso no previsto de las instalaciones</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>Ataques intencionados</td>
+        <td>AI08</td>
+        <td>Acceso no autorizado</td>
+        <td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div class="container mt-5">
+    <h2 class="text-center">Tabla de Analisis de Amenazas</h2>
+    <table class="table table-bordered" id="threatsTables">
+      <thead>
+      <tr>
+        <th>Código Activo</th>
+        <th>Activo</th>
+        <th>Valoración</th>
+        <th>Valor</th>
+        <th>Código Amenaza</th>
+        <th>Amenaza</th>
+        <th colspan="2">Vulneravilidad</th>
+        <th colspan="2">AImpacto</th>
+        <th>Riesgo intrinseco</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Valoración</th>
+        <th>Valor</th>
+        <th>Valoración</th>
+        <th>Valor</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+  <br>
+</main>
+<div class="container mt-5">
+  <h2 class="text-center">Tabla de Riesgo Residual</h2>
+  <table class="table table-bordered table-striped" id="tablaRiesgoResidual">
+    <thead>
+      <tr>
+        <th>ID Activo-Amenaza</th>
+        <th>Efectividad del Control</th>
+        <th>Riesgo Residual</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+<br>
+<footer>
+  <p>&copy; 2024 Gestión de Activos - Magerit. Todos los derechos reservados. UEB</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script> 
+</body>
+</html>
